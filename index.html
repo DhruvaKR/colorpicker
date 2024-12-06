@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <style>
+        body {
+            background-image: url('C:/Users/bodin/OneDrive/Pictures/colors.jpg');
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .color-display {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 1px solid #000;
+        }        
+    </style>
+</head>
+<body>
+    <h1>Color Picker</h1>
+    <label for="colorPicker">Pick a color:</label>
+    <input type="color" id="colorPicker" onchange="updateColor()">
+    <div class="color-display" id="colorDisplay"></div>
+    <button onclick="copyColor()" style="background-color: white;">Copy <img style="background-color: white;" src="C:\Users\bodin\OneDrive\Desktop\web dev\color picker\cpy-img.png" width="13px" height="15px"></button>
+    <p id="colorCode" style="font-weight: bold; color: rgb(0, 0, 0);">Selected color code will appear here.</p>
+
+    <script>
+        const colorDisplay = document.getElementById('colorDisplay');
+
+        colorPicker.addEventListener('input', (event) => {
+            colorDisplay.style.backgroundColor = event.target.value;
+        })
+        function updateColor() {
+            var color = document.getElementById('colorPicker').value;
+            document.getElementById('colorCode').innerText = color;
+        }
+
+        function copyColor() {
+            var colorCode = document.getElementById('colorCode').innerText;
+            navigator.clipboard.writeText(colorCode).then(function() {
+                alert('Color code copied: ' + colorCode);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
